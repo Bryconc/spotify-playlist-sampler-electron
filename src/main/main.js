@@ -1,7 +1,9 @@
 const { BrowserWindow, app } = require('electron');
 
-function createWindow() {
-  let win = new BrowserWindow({
+let mainWindow = null;
+
+const createWindow = () => {
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -9,7 +11,7 @@ function createWindow() {
     }
   });
 
-  win.loadFile('static/index.html');
-}
+  mainWindow.loadFile('static/index.html');
+};
 
 app.on('ready', createWindow);

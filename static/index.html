@@ -1,22 +1,17 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
+    <title>Spotify Playlist Sampler</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node
+    <h1>Spotify Playlist Sampler</h1>
+    <p>
+      You must sign into Spotify to use this application. Please sign into
+      Spotify with the pop-up modal.
+    </p>
+
     <script>
-      document.write(process.versions.node);
+      require('../src/renderer/spotify/spotify-login.js');
     </script>
-    , Chrome
-    <script>
-      document.write(process.versions.chrome);
-    </script>
-    , and Electron
-    <script>
-      document.write(process.versions.electron);
-    </script>
-    .
   </body>
 </html>
