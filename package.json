@@ -22,7 +22,9 @@
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
     "@types/electron": "^1.6.10",
+    "@types/spotify-web-api-node": "^4.0.1",
     "rxjs": "~6.5.4",
+    "spotify-web-api-node": "^4.0.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

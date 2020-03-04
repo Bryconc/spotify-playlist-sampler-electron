@@ -15,6 +15,8 @@ function createWindow() {
     }
   });
 
+  win.webContents.openDevTools();
+
   // Load the angular app.
   win.loadFile(resolve("dist/spotify-playlist-sampler/index.html"));
 

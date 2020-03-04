@@ -14,6 +14,7 @@ function createWindow() {
             nodeIntegration: true
         }
     });
+    win.webContents.openDevTools();
     // Load the angular app.
     win.loadFile(app_root_path_1.resolve("dist/spotify-playlist-sampler/index.html"));
     // Emitted when the window is closed.

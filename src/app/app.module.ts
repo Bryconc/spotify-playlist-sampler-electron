@@ -5,10 +5,25 @@ import { NgxElectronModule } from "ngx-electron";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { SpotifyLoginComponent } from "./spotify-login/spotify-login.component";
+import { SamplerComponent } from "./sampler/sampler.component";
+import { PlayerComponent } from "./player/player.component";
+import { SamplerConfigComponent } from "./sampler-config/sampler-config.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [AppComponent, SpotifyLoginComponent],
-  imports: [BrowserModule, NgxElectronModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    SpotifyLoginComponent,
+    SamplerComponent,
+    PlayerComponent,
+    SamplerConfigComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxElectronModule,
+    ReactiveFormsModule,
+    AppRoutingModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
