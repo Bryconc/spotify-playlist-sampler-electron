@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { ConfigService } from "../core/config.service";
-import { Response } from "../core/spotify/model/response";
-import { SpotifyService } from "../core/spotify/spotify.service";
 
 @Component({
   selector: "app-sampler",
