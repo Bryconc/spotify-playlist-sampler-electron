@@ -15,12 +15,6 @@
     }}</a>
   </h2>
   <h3>Total Songs: {{ config.currentPlaylist.tracks.total }}</h3>
-
-  <img
-    [src]="config.currentPlaylist.images[0].url"
-    alt="Mosaic artwork of playlist"
-    class="config__playlist-image"
-  />
 </ng-template>
 <ng-template #noPlaylist>
   <h2>No Playlist Currently Being Sampled.</h2>

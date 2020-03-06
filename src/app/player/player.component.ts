@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfigService } from "../core/config.service";
+import { Track } from "../audio/track";
+import { PlaylistService } from "../audio/playlist.service";
 
 @Component({
   selector: "app-player",
@@ -7,10 +9,10 @@ import { ConfigService } from "../core/config.service";
   styleUrls: ["./player.component.scss"]
 })
 export class PlayerComponent implements OnInit {
-  public currentTracks: Track[];
-  public pageSizeOptions: number[];
-
-  constructor(private config: ConfigService) {}
+  constructor(
+    private config: ConfigService,
+    private playlistService: PlaylistService
+  ) {}
 
   ngOnInit(): void {
     this.config
@@ -23,15 +25,26 @@ export class PlayerComponent implements OnInit {
   private newPlaylist(playlist: SpotifyApi.PlaylistObjectFull): void {
     const tracks = playlist.tracks.items.map(
       (item: SpotifyApi.PlaylistTrackObject): Track => {
+        if (!item.track.preview_url) {
+          console.info("Playlist track has no preview url: ", item);
+        }
+
+        const artist = item.track.artists
+          .map((artist: SpotifyApi.ArtistObjectSimplified) => artist.name)
+          .join(",");
+
         return {
           link: item.track.preview_url,
-          title: item.track.name
+          title: item.track.name,
+          artist,
+          album: item.track.album.name,
+          albumImageLink: item.track.album.images[0].url
         };
       }
     );
 
     this.shuffle(tracks);
-    this.currentTracks = tracks;
+    this.playlistService.updatePlaylist(tracks);
   }
 
   private shuffle<T>(array: T[]): void {

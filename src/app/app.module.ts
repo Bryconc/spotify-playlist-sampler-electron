@@ -11,6 +11,8 @@ import { PlayerComponent } from "./player/player.component";
 import { SamplerConfigComponent } from "./sampler-config/sampler-config.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AudioPlayerComponent } from "./audio/audio-player/audio-player.component";
+import { MinuteSecondsPipe } from './core/minute-seconds.pipe';
+import { PlaylistPreviewComponent } from './player/playlist-preview/playlist-preview.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AudioPlayerComponent } from "./audio/audio-player/audio-player.componen
     SamplerComponent,
     PlayerComponent,
     SamplerConfigComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    MinuteSecondsPipe,
+    PlaylistPreviewComponent
   ],
   imports: [
     BrowserModule,
