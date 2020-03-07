@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ConfigService } from "../core/config.service";
 import { Track } from "../audio/track";
 import { PlaylistService } from "../audio/playlist.service";
+import { PlaylistUpdateMessage } from "../core/playlist-update-message";
 
 @Component({
   selector: "app-player",
@@ -17,8 +18,8 @@ export class PlayerComponent implements OnInit {
   ngOnInit(): void {
     this.config
       .playlistChanges()
-      .subscribe((playlist: SpotifyApi.PlaylistObjectFull) => {
-        this.newPlaylist(playlist);
+      .subscribe((playlist: PlaylistUpdateMessage) => {
+        this.newPlaylist(playlist.playlist);
       });
   }
 
@@ -38,7 +39,7 @@ export class PlayerComponent implements OnInit {
           title: item.track.name,
           artist,
           album: item.track.album.name,
-          albumImageLink: item.track.album.images[0].url
+          albumImageLink: item.track.album.images[0]?.url
         };
       }
     );

@@ -1,5 +1,44 @@
-<div>
-  <p *ngFor="let track of previewTracks">
-    {{ track.title }}
-  </p>
+<div class="playlist-preview__padding">
+  <h2>Playlist Preview:</h2>
+  <div class="playlist-preview" *ngIf="currentTrack">
+    <div *ngFor="let track of previousTracks; let index = index">
+      <p class="preview-label">
+        <ng-container *ngIf="index === previousTracks.length - 1"
+          >Previous:</ng-container
+        >
+      </p>
+      <p
+        class="preview-track"
+        [ngClass]="{ 'preview-track--disabled': !track.link }"
+      >
+        {{ track.title }} - {{ track.artist }}
+      </p>
+    </div>
+    <div>
+      <p class="preview-label">Now Playing:</p>
+      <p *ngIf="currentTrack" class="preview-track preview-track--current">
+        {{ currentTrack.title }} - {{ currentTrack.artist }}
+      </p>
+    </div>
+
+    <div *ngFor="let track of futureTracks; let index = index">
+      <p class="preview-label">
+        <ng-container *ngIf="index === 0">Up Next:</ng-container>
+      </p>
+      <p
+        class="preview-track"
+        [ngClass]="{ 'preview-track--disabled': !track.link }"
+      >
+        {{ track.title }} - {{ track.artist }}
+      </p>
+    </div>
+  </div>
+  <div *ngIf="!currentTrack">
+    <p>
+      <em
+        >Once you load a playlist, you will see the upcoming track preview
+        here.</em
+      >
+    </p>
+  </div>
 </div>

@@ -19,4 +19,16 @@ export class SpotifyService {
     this.spotify.setAccessToken(this.authService.getAccessToken());
     return this.spotify.getPlaylist(playlistId);
   }
+
+  public getPlaylistTracks(
+    playlistId: string,
+    offset: number,
+    limit: number
+  ): Promise<Response<SpotifyApi.PlaylistTrackResponse>> {
+    this.spotify.setAccessToken(this.authService.getAccessToken());
+    return this.spotify.getPlaylistTracks(playlistId, {
+      offset,
+      limit
+    });
+  }
 }

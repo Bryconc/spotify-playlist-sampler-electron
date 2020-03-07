@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: repeating-linear-gradient(
+    135deg,
+    #121212,
+    #121212 10px,
+    #212329 10px,
+    #212329 12px
+  );
+  color: white;
+  margin: 0px;
+}
+
+.link,
+.link:visited {
+  color: white;
+  text-decoration: none;
+}
+
+input {
+  background-color: #2e2f3a;
+  color: #6a6b74;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}

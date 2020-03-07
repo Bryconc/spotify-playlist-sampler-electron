@@ -1,4 +1,16 @@
-.current-track-image {
+.now-playing {
+  text-align: center;
+}
+
+.now-playing__image {
   width: 200px;
   height: 200px;
+}
+
+.audio-controls {
+  text-align: center;
+}
+
+.audio-controls--hidden {
+  visibility: hidden;
 }

@@ -45,11 +45,7 @@ export class PlaylistService {
     if (!this.playlist) {
       return;
     }
-    if (this.currentIndex === 0) {
-      this.currentIndex = this.playlist.length - 1;
-    } else {
-      this.currentIndex--;
-    }
+    this.currentIndex = this.getPreviousPlayableSong();
 
     this.songChangesSubject.next(this.playlist[this.currentIndex]);
   }
@@ -60,5 +56,25 @@ export class PlaylistService {
 
   public getCurrentIndex(): number {
     return this.currentIndex;
+  }
+
+  private getPreviousPlayableSong(): number {
+    let nextIndex = this.currentIndex - 1;
+    if (nextIndex < 0) {
+      nextIndex = this.playlist.length - 1;
+    }
+    while (nextIndex != this.currentIndex) {
+      if (this.playlist[nextIndex].link) {
+        return nextIndex;
+      }
+
+      if (nextIndex == 0) {
+        nextIndex = this.playlist.length - 1;
+      } else {
+        nextIndex--;
+      }
+    }
+
+    return nextIndex;
   }
 }

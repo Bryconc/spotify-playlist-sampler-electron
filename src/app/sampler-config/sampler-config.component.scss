@@ -1,4 +1,25 @@
-.config__playlist-image {
-  max-width: 200px;
-  max-height: 200px;
+.sampler-config {
+  padding: 8px;
+  background-color: #282a30;
+  box-shadow: 5px 5px 5px #17161d;
+  margin-bottom: 10px;
+}
+
+.playlist-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.playlist-info__heading {
+  flex: 0 75%;
+}
+
+.playlist-info__total-track-count {
+  flex: 0 20%;
+  text-align: right;
+}
+
+input {
+  margin-left: 10px;
+  width: 300px;
 }

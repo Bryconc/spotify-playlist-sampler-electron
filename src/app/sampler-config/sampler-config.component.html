@@ -1,21 +1,27 @@
-<div>
+<div class="sampler-config">
   <form [formGroup]="updatePlaylistForm" (ngSubmit)="updatePlaylist()">
     <label for="playlistId">Playlist Id:</label>
     <input name="playlistId" formControlName="playlistId" type="text" />
-    <button class="button" type="submit">Update</button>
   </form>
-</div>
 
-<div *ngIf="config.currentPlaylist; then withPlaylist; else noPlaylist"></div>
-<ng-template #withPlaylist>
-  <h2>
-    Currently Sampling Playlist:
-    <a target="_blank" [href]="config.currentPlaylist.external_urls.spotify">{{
-      config.currentPlaylist.name
-    }}</a>
-  </h2>
-  <h3>Total Songs: {{ config.currentPlaylist.tracks.total }}</h3>
-</ng-template>
-<ng-template #noPlaylist>
-  <h2>No Playlist Currently Being Sampled.</h2>
-</ng-template>
+  <div *ngIf="config.currentPlaylist; then withPlaylist; else noPlaylist"></div>
+  <ng-template #withPlaylist>
+    <div class="playlist-info">
+      <h2 class="playlist-info__heading">
+        Playlist:
+        <a
+          class="link"
+          target="_blank"
+          [href]="config.currentPlaylist.external_urls.spotify"
+          >{{ config.currentPlaylist.name }}</a
+        >
+      </h2>
+      <p class="playlist-info__total-track-count">
+        Total Track Count: {{ config.currentPlaylist.tracks.total }}
+      </p>
+    </div>
+  </ng-template>
+  <ng-template #noPlaylist>
+    <h2>No Playlist Currently Being Sampled.</h2>
+  </ng-template>
+</div>

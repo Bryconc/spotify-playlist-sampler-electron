@@ -1,0 +1,36 @@
+.preview-track--disabled {
+  background-color: #3b3c45;
+  color: #7b7c85;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+.preview-label {
+  flex: 0 10%;
+  text-align: right;
+  padding-right: 20px;
+  margin: 10px 0px;
+  color: #5d5e67;
+}
+
+.preview-track {
+  flex: 0 85%;
+  margin: 10px 0px;
+}
+
+.playlist-preview {
+  background-color: #2e2f3a;
+  border-radius: 5px;
+}
+
+.playlist-preview div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.playlist-preview__padding {
+  margin: 0px 8px;
+}
+
+.playlist-preview div:nth-child(even) {
+  background-color: #2b2c34;
+}

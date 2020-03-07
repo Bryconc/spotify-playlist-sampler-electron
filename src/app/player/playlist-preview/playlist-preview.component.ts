@@ -8,7 +8,9 @@ import { Track } from "src/app/audio/track";
   styleUrls: ["./playlist-preview.component.scss"]
 })
 export class PlaylistPreviewComponent implements OnInit {
-  public previewTracks: Track[];
+  public previousTracks: Track[];
+  public currentTrack: Track;
+  public futureTracks: Track[];
 
   constructor(private playlist: PlaylistService) {}
 
@@ -18,35 +20,63 @@ export class PlaylistPreviewComponent implements OnInit {
       const currentIndex = this.playlist.getCurrentIndex();
 
       if (currentTracks.length < 5) {
-        this.previewTracks = currentTracks;
+        this.previousTracks = currentTracks.slice(0, currentIndex);
+        this.currentTrack = currentTracks[currentIndex];
+        this.futureTracks = currentTracks.slice(currentIndex + 1);
       } else {
-        let begin = [];
-        let end = [];
+        this.currentTrack = currentTracks[currentIndex];
+        let out = [];
 
-        if (currentIndex == 0) {
-          begin = currentTracks.slice(-2);
-        } else if (currentIndex == 1) {
-          begin = currentTracks.slice(-1).concat(currentTracks.slice(0, 1));
-        } else {
-          begin = currentTracks.slice(currentIndex - 2, currentIndex);
-        }
+        this.getTracksBehind(currentTracks, currentIndex, 2, out);
+        this.previousTracks = out;
 
-        if (currentIndex == currentTracks.length - 1) {
-          end = currentTracks.slice(-1).concat(currentTracks.slice(0, 2));
-        } else if (currentIndex == currentTracks.length - 2) {
-          end = currentTracks.slice(-2).concat(currentTracks.slice(0, 1));
-        } else {
-          end = currentTracks.slice(currentIndex, currentIndex + 3);
-        }
+        out = [];
 
-        console.log("Beginning ", begin);
-
-        console.log("Ending ", end);
-
-        this.previewTracks = begin.concat(end);
+        this.getTrackAhead(currentTracks, currentIndex, 2, out);
+        this.futureTracks = out;
       }
-
-      console.log("Tracks for preview will be ", this.previewTracks);
     });
+  }
+
+  private getTracksBehind(
+    tracks: Track[],
+    index: number,
+    count: number,
+    out: Track[]
+  ) {
+    if (count === 0) {
+      return;
+    }
+
+    let nextIndex = index - 1;
+
+    if (nextIndex < 0) {
+      nextIndex = tracks.length - 1;
+    }
+
+    this.getTracksBehind(tracks, nextIndex, count - 1, out);
+
+    out.push(tracks[nextIndex]);
+  }
+
+  private getTrackAhead(
+    tracks: Track[],
+    index: number,
+    count: number,
+    out: Track[]
+  ) {
+    if (count === 0) {
+      return;
+    }
+
+    let nextIndex = index + 1;
+
+    if (nextIndex > tracks.length - 1) {
+      nextIndex = 0;
+    }
+
+    out.push(tracks[nextIndex]);
+
+    this.getTrackAhead(tracks, nextIndex, count - 1, out);
   }
 }
